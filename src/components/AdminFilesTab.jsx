@@ -11,7 +11,7 @@ import "./c-style/adminPage.css"
 import UpdateFile from './UpdateFile'
 const AdminFilesTab = () => {
   const getDocuments = () => {
-    axios.get("http://localhost:4000/files",{
+    axios.get("https://madoun-salman.herokuapp.com/files",{
         params : {
             type:type,
             visi :visi,
@@ -44,7 +44,7 @@ const AdminFilesTab = () => {
     
     
       const DeleteElement = (fich_id,fich_path,fich_corr) => {
-        axios.post("http://localhost:4000/DeleteFile",{fich_id:fich_id,fich_path:fich_path,fich_corr:fich_corr},{}).then(res => { // then print response status
+        axios.post("https://madoun-salman.herokuapp.com/DeleteFile",{fich_id:fich_id,fich_path:fich_path,fich_corr:fich_corr},{}).then(res => { // then print response status
         console.log(res.data);
            });
          };

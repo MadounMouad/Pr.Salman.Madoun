@@ -18,7 +18,7 @@ function App() {
     const [StudauthState,setStudAuthState] = useState(false);
     useEffect(() => {
         
-            axios.get('http://localhost:4000/auth2',{
+            axios.get('https://madoun-salman.herokuapp.com/auth2',{
             headers : {
                 studentToken: localStorage.getItem("studentToken")
             }
@@ -35,7 +35,7 @@ function App() {
     
     useEffect(() => {
         
-            axios.get('http://localhost:4000/auth',{
+            axios.get('https://madoun-salman.herokuapp.com/auth',{
             headers : {
                 adminToken: localStorage.getItem("adminToken")
             }

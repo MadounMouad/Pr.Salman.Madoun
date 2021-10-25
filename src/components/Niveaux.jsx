@@ -25,7 +25,7 @@ const Niveaux = () => {
     
     useEffect(() => {
        
-            axios.get('http://localhost:4000/auth2',{
+            axios.get('https://madoun-salman.herokuapp.com/auth2',{
             headers : {
                 studentToken: localStorage.getItem("studentToken")
             }
@@ -62,7 +62,7 @@ const Niveaux = () => {
     
     const getDocuments = async (id) => {
         console.log("Studentfiles");
-        axios.get("http://localhost:4000/Studentfiles",{
+        axios.get("https://madoun-salman.herokuapp.com/Studentfiles",{
             params : {
                 type: type,
                 visi :id,

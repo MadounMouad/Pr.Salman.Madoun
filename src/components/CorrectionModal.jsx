@@ -20,7 +20,7 @@ const CorrectionModal = () => {
     const addElemetFile = async () => {
         const data = new FormData() 
            data.append('file',selectedFile)
-           const res = await axios.post("http://localhost:4000/upload",data,{}) // then print response status
+           const res = await axios.post("https://madoun-salman.herokuapp.com/upload",data,{}) // then print response status
            console.log(res.data);
              
          };
@@ -35,13 +35,13 @@ const CorrectionModal = () => {
                 file = filesList[i].correction_path ;
               }
             }
-            const res = await axios.post("http://localhost:4000/updatePath",{fichier_id:fichier_id,co_path:file},{}) // then print response status
+            const res = await axios.post("https://madoun-salman.herokuapp.com/updatePath",{fichier_id:fichier_id,co_path:file},{}) // then print response status
             console.log(res.data);
             
              };
     
     const getDocumentsNames = () => {
-                axios.get("http://localhost:4000/fichiers").then((response) => {
+                axios.get("https://madoun-salman.herokuapp.com/fichiers").then((response) => {
                   console.log(response);
                   setFilesList(response.data);
                 })

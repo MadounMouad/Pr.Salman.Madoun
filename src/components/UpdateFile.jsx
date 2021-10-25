@@ -34,7 +34,7 @@ const UpdateFile = ({file}) => {
         const data = new FormData() 
            data.append('file',selectedFile)
          
-           const resp = await axios.post("http://localhost:4000/upload",data,{})
+           const resp = await axios.post("https://madoun-salman.herokuapp.com/upload",data,{})
            console.log(resp.data);
            
          };
@@ -53,13 +53,13 @@ const UpdateFile = ({file}) => {
         if (selectedFile){
             console.log("file exists")
             await updateElemetFile();
-            axios.post("http://localhost:4000/updateALL",Mydata).then((response) => {
+            axios.post("https://madoun-salman.herokuapp.com/updateALL",Mydata).then((response) => {
           console.log(response.data);
         })
         }
         else {
             console.log("file dosen't exists")
-            axios.post("http://localhost:4000/updateALLButFile",Mydata).then((response) => {
+            axios.post("https://madoun-salman.herokuapp.com/updateALLButFile",Mydata).then((response) => {
           console.log(response.data);
         })
         }

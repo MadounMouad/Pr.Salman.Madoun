@@ -15,7 +15,7 @@ const Password = () => {
     const [c_password,setC_Password] = useState("");
     
     const updatePassword = async () => {
-            const res = await axios.post("http://localhost:4000/updatePass",{user_id :user_id,pass:password,c_pass:c_password},{}) // then print response status
+            const res = await axios.post("https://madoun-salman.herokuapp.com/updatePass",{user_id :user_id,pass:password,c_pass:c_password},{}) // then print response status
             if(res.data.error) setError(res.data.error) ;
             else {
                 setError("");

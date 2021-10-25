@@ -44,12 +44,12 @@ const AdminPage = () => {
      const data = new FormData() 
         data.append('file',selectedFile)
       
-        const res = await axios.post("http://localhost:4000/upload",data,{});
+        const res = await axios.post("https://madoun-salman.herokuapp.com/upload",data,{});
         console.log(res.data);
       };
       
     const addElement =async () => {
-        axios.post("http://localhost:4000/create",{
+        axios.post("https://madoun-salman.herokuapp.com/create",{
           type : type,
           nom : nom ,
           description : description,
