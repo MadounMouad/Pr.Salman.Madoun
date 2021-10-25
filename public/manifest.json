@@ -1,0 +1,13 @@
+{
+    "short_name": "Pr. SALMAN MADOUN",
+    "name": "Site officiel du Professeur MADOUN SALMAN",
+    "icons": [{
+        "src": "physics-4.png",
+        "type": "image/png",
+        "sizes": "192x192"
+    }],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+}

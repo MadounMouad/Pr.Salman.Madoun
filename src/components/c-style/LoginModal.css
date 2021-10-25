@@ -1,0 +1,32 @@
+#danger {
+    text-align: center;
+    color: aliceblue !important;
+    border-radius: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: transparent !important;
+    border-color: transparent;
+}
+
+#danger.active,
+#danger:hover {
+    background-image: linear-gradient(to right, Crimson, orangered) !important;
+    border-radius: 15px;
+}
+
+.loginModal .modal-content {
+    background-color: #1a1a1a;
+}
+
+.submit-btn {
+    background-image: linear-gradient(to right, Crimson, orangered);
+    border-color: transparent !important;
+}
+
+.submit-btn:hover {
+    border-color: #fff !important;
+}
+
+.btn-close {
+    background-color: #fff;
+}

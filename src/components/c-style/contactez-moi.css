@@ -1,0 +1,49 @@
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.contactsTitle {
+    color: #fff;
+}
+
+.contactmodal .modal-content {
+    backdrop-filter: blur(4px);
+    background: transparent;
+    border-radius: 40px 0px 40px 0px;
+}
+
+.contactsmodal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.icons {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.icons:hover {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,17 @@
+ .nav>div>a {
+     color: aliceblue;
+ }
+ 
+ .nav>div>a:hover {
+     color: gray !important;
+ }
+ 
+ .nav>div>a:focus {
+     color: black !important;
+ }
+ 
+ .titre1 {
+     color: bisque;
+     font-size: 30px;
+     text-align: center;
+ }

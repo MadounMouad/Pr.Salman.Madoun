@@ -1,0 +1,60 @@
+.header-wrapper {
+    position: relative;
+    background: url("./pictures/background.jpeg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.salmanpic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: solid;
+}
+
+.main-info {
+    z-index: 1;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main-info>h1 {
+    text-transform: uppercase;
+    color: orangered;
+}
+
+.typed-text {
+    color: aliceblue;
+    font-size: 2rem;
+}
+
+.btn-main-offer {
+    background-color: transparent;
+    border: 2px solid Crimson;
+    text-transform: uppercase;
+    border-radius: 0;
+    padding: 12px;
+    margin: 2rem;
+    color: aliceblue;
+}
+
+.btn-main-offer:hover {
+    border-radius: 12px 12px;
+    color: Crimson;
+}
+
+.tsparticles-canvas-el {
+    position: absolute;
+    height: 100vh;
+    width: 100vh;
+    z-index: 1;
+}
