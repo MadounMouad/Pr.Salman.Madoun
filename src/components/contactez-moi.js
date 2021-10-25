@@ -11,7 +11,7 @@ const ContactsBtn = () => {
     const [smShow, setSmShow] = useState(false);
     return (
         <>
-        <Button id="danger" variant="danger" style={{textTransform:"uppercase"},{borderColor:"orangered"}} onClick={() => setSmShow(true)}>Contactez-moi</Button>
+        <Button id="danger" variant="danger" style={{textTransform:"uppercase",borderColor:"orangered"}} onClick={() => setSmShow(true)}>Contactez-moi</Button>
         <Modal
         className="contactmodal"
           centered

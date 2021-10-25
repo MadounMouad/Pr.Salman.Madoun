@@ -31,7 +31,7 @@ const CorrectionModal = () => {
             {
               console.log(filesList[i].fichier_id)
               console.log(filesList[i].correction_path) 
-              if (filesList[i].fichier_id == fichier_id) {
+              if (filesList[i].fichier_id === fichier_id) {
                 file = filesList[i].correction_path ;
               }
             }

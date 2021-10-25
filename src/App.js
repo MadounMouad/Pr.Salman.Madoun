@@ -33,7 +33,7 @@ function App() {
         
     }, [])
     
-    useEffect(async () => {
+    useEffect(() => {
         
             axios.get('http://localhost:4000/auth',{
             headers : {

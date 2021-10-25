@@ -14,7 +14,7 @@ import { StudAuthContext } from '../Helpers/StudAuthContext'
 const Niveaux = () => {
     const [filesList,setFilesList] = useState([]);
     useEffect(() => {
-        if (filesList.length != 0) setDocs(true);
+        if (filesList.length !== 0) setDocs(true);
         else setDocs(false);
     }, [filesList])
     const [StudauthState,setStudAuthState] = useState(false);
@@ -42,7 +42,7 @@ const Niveaux = () => {
     }, []) 
     
     const VerifyAuth = () => {
-        if (type == 1){setCours(true)}else {setCours(false)}
+        if (type === 1){setCours(true)}else {setCours(false)}
         
         if (StudauthState) getDocuments(1);
         else getDocuments(2);

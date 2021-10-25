@@ -6,6 +6,7 @@ import {NavLink} from 'react-router-dom'
 import { useHistory } from 'react-router';
 import { AuthContext } from '../Helpers/AuthContext'
 import { StudAuthContext } from '../Helpers/StudAuthContext'
+import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 
 const Navbar = ({id}) => {
@@ -19,9 +20,9 @@ const Navbar = ({id}) => {
     
     useEffect(() => {
       switch (id) {
-        case 0:{setCoState(false);setAdminState(false)};break;
-        case 1:{setCoState(true);setAdminState(true)};break;
-        case 2:{setCoState(true);};break;
+        case 0:{setCoState(false);setAdminState(false);break;}
+        case 1:{setCoState(true);setAdminState(true);break;}
+        case 2:{setCoState(true);;break;}
         default:
           break;
       }
@@ -42,7 +43,7 @@ const Navbar = ({id}) => {
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark" >
         <div className="container">
         
-        <a className="navbar-brand" href="#"><img className="logo" src={logo} alt="logo..." /></a>
+        <a className="navbar-brand" href="/"><img className="logo" src={logo} alt="logo..." /></a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -79,8 +80,8 @@ const Navbar = ({id}) => {
              )
               ):(
                 <>
-                <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {/* <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   NIVEAUX
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -88,10 +89,23 @@ const Navbar = ({id}) => {
                   <li><NavLink className="dropdown-item" activeClassName="None"  to="/Niveau" >1BAC</NavLink></li>
                   <li><NavLink className="dropdown-item" activeClassName="None"  to="/Niveau" >5EME</NavLink></li>
                   <li><hr  className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#">QUESTION ?</a></li>
+                  <li><Button variant="outline-danger"> QUESTION ?</Button></li>
                 </ul>
-              </li>
-                  <li className="nav-item" style={{textAlign:"center"}}>
+              </li> */}
+                <Dropdown style={{marginLeft:"10px"}} >
+                  <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">
+                  NIVEAUX
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu variant="dark">
+                    <Dropdown.Item href="/Niveau" style={{textAlign:"center"}}>2BAC</Dropdown.Item>
+                    <Dropdown.Item href="/Niveau" style={{textAlign:"center"}}>1BAC</Dropdown.Item>
+                    <Dropdown.Item href="/Niveau" style={{textAlign:"center"}}>5EME</Dropdown.Item>
+                    <Dropdown.Divider />
+                      <Dropdown.Item href="#/" style={{textAlign:"center"}}>QUESTION ?</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+                  <li className="nav-item" style={{textAlign:"center",marginLeft:"10px"}}>
                   <LoginModel/>
                 </li>
                 </>

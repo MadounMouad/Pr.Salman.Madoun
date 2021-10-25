@@ -11,7 +11,7 @@ const Header = () => {
     return ( 
         <div className="header-wrapper">
             <div className="main-info">
-                <img src={ProfilePic}  className="salmanpic" />
+                <img src={ProfilePic} alt="no img found" className="salmanpic" />
                 <br />
             <Typed className="typed-text" 
                 strings={["2éme Bac","1ére Bac","Tronc commun","Sciences Physiques","Sciences Expérimentales","Sciences Mathématiques"]}

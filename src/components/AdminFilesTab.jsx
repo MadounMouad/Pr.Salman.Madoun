@@ -10,9 +10,24 @@ import Table from 'react-bootstrap/Table'
 import "./c-style/adminPage.css"
 import UpdateFile from './UpdateFile'
 const AdminFilesTab = () => {
+  const getDocuments = () => {
+    axios.get("http://localhost:4000/files",{
+        params : {
+            type:type,
+            visi :visi,
+            langue:langue,
+            niveau :niveau
+        }
+    }).then((response) => {
+      console.log(response);
+      setFilesList(response.data);
+    })
+  }
     useEffect(() => {
         getDocuments();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
 
     const niv=["","2BAC SM","2BAC PC","2BAC SVT","1BAC SM","1BAC SE","5EME"];
     const typ=["","Cours","Série d'exercice","Devoir","Examen blanc","Examen national"];
@@ -25,19 +40,7 @@ const AdminFilesTab = () => {
     const [niveau, setNiveau] = useState('%');
     const [filesList,setFilesList] = useState([]);
     
-    const getDocuments = () => {
-        axios.get("http://localhost:4000/files",{
-            params : {
-                type:type,
-                visi :visi,
-                langue:langue,
-                niveau :niveau
-            }
-        }).then((response) => {
-          console.log(response);
-          setFilesList(response.data);
-        })
-      }
+    
     
     
       const DeleteElement = (fich_id,fich_path,fich_corr) => {
