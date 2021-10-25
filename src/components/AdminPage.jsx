@@ -66,7 +66,7 @@ const AdminPage = () => {
 
   
     return (
-        <body>
+        <div>
         <div className="contentDiv">
 
         <div className="modalDiv">
@@ -161,7 +161,7 @@ const AdminPage = () => {
           </Modal.Footer>
         </Modal>
         </div>
-        </body>
+        </div>
     );
 }
 

@@ -23,8 +23,8 @@ const Niveaux = () => {
     const [cours,setCours]=useState(false);
     
     
-    useEffect(async () => {
-        async function fetchauth2() {
+    useEffect(() => {
+       
             axios.get('http://localhost:4000/auth2',{
             headers : {
                 studentToken: localStorage.getItem("studentToken")
@@ -37,8 +37,8 @@ const Niveaux = () => {
             }
         })
 
-        }
-        await fetchauth2();
+        
+       
     }, []) 
     
     const VerifyAuth = () => {
@@ -156,8 +156,8 @@ const Niveaux = () => {
                                           <td>{val.fichier_name}</td>
                                           <td style={{textAlign:"left"}}><pre>{val.fichier_desciption}</pre></td>
                                           <td>{lang[val.fichier_langue]}</td>
-                                          <td><a href ={ps} target="_blank" >Download Pdf</a></td>
-                                          {!cours ? (path ? (<td><a href ={cs} target="_blank" >Download Pdf</a></td>) :
+                                          <td><a href ={ps} target="_blank" rel="noreferrer">Download Pdf</a></td>
+                                          {!cours ? (path ? (<td><a href ={cs} target="_blank" rel="noreferrer">Download Pdf</a></td>) :
                                               <td> à venir </td>
                                           ) : <></>}
                                       </tr>

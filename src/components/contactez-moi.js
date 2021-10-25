@@ -26,12 +26,12 @@ const ContactsBtn = () => {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="contactsmodal">
-            <SocialIcon className="icons" target="_blank" url="mailto:prof.salman.madoun@gmail.com" network="email" />
-            <SocialIcon className="icons" target="_blank"  network="whatsapp" url="https://wa.me/212643015298"  />
-            <SocialIcon className="icons" target="_blank"  url="tel:+212643015298"  />
-            <SocialIcon className="icons" target="_blank"  network="facebook" url="https://www.facebook.com/matadour.salman" />
-            <SocialIcon className="icons" target="_blank"  network="instagram" url="https://www.instagram.com/salman_madoun" />
-            <SocialIcon className="icons" target="_blank"  network="telegram" url="https://telegram.me/profmadoun" />
+            <SocialIcon className="icons" target="_blank" rel="noreferrer" url="mailto:prof.salman.madoun@gmail.com" network="email" />
+            <SocialIcon className="icons" target="_blank" rel="noreferrer" network="whatsapp" url="https://wa.me/212643015298"  />
+            <SocialIcon className="icons" target="_blank" rel="noreferrer" url="tel:+212643015298"  />
+            <SocialIcon className="icons" target="_blank" rel="noreferrer" network="facebook" url="https://www.facebook.com/matadour.salman" />
+            <SocialIcon className="icons" target="_blank" rel="noreferrer" network="instagram" url="https://www.instagram.com/salman_madoun" />
+            <SocialIcon className="icons" target="_blank" rel="noreferrer"re network="telegram" url="https://telegram.me/profmadoun" />
           </Modal.Body>
         </Modal>
         </>

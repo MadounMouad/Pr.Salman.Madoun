@@ -16,8 +16,8 @@ import Niveaux from './components/Niveaux';
 function App() {
     const [authState,setAuthState] = useState(false);
     const [StudauthState,setStudAuthState] = useState(false);
-    useEffect(async () => {
-        async function fetchauth2() {
+    useEffect(() => {
+        
             axios.get('http://localhost:4000/auth2',{
             headers : {
                 studentToken: localStorage.getItem("studentToken")
@@ -30,13 +30,11 @@ function App() {
             }
         })
 
-        }
-        await fetchauth2();
- 
+        
     }, [])
     
     useEffect(async () => {
-        async function fetchauth(){
+        
             axios.get('http://localhost:4000/auth',{
             headers : {
                 adminToken: localStorage.getItem("adminToken")
@@ -47,11 +45,7 @@ function App() {
             else {
                 setAuthState(true);
             }
-        })
-
-        }
-        await fetchauth();
-        
+        }) 
      
     }, [])
 
@@ -70,8 +64,8 @@ function App() {
            )
         }
         
-        
-        
+       
+            
         
         <Switch>
             <Route exact path="/">
@@ -111,6 +105,7 @@ function App() {
             
        
         </Switch>
+        
         
 
        </BrowserRouter>

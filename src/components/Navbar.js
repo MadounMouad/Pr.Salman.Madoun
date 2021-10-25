@@ -63,7 +63,7 @@ const Navbar = ({id}) => {
                     <NavLink className="nav-link" activeClassName="None" to="/AdminPage">Mes Documents</NavLink>
                 </li>
                 &nbsp;
-                <Button style={{marginLeft:"20px"}} variant="outline-danger" activeClassName="None" onClick={logout} >Se déconnecter</Button>
+                <Button style={{marginLeft:"20px"}} variant="outline-danger" onClick={logout} >Se déconnecter</Button>
                 
             </>
 
@@ -73,7 +73,7 @@ const Navbar = ({id}) => {
                <NavLink className="nav-link" activeClassName="None" to="/Niveau">Mes Documents</NavLink>
                </li>
               
-               <Button style={{marginLeft:"20px"}} variant="outline-danger" activeClassName="None" onClick={logout2} >Se déconnecter</Button>
+               <Button style={{marginLeft:"20px"}} variant="outline-danger"  onClick={logout2} >Se déconnecter</Button>
 
               </>
              )
