@@ -146,9 +146,7 @@ const Niveaux = () => {
                                 
                                     filesList.map((val,key)=>{
                                       
-                                      let path = val.correction_path ;
-                                      let ps = process.env.PUBLIC_URL + '/files/' + val.fichier_path ;
-                                      let cs = process.env.PUBLIC_URL + '/files/' + path ;
+                                    
                                       return(
                                       <tr key={key}>
                                           <td>{niv[val.fichier_niveau]}</td>
@@ -156,8 +154,8 @@ const Niveaux = () => {
                                           <td>{val.fichier_name}</td>
                                           <td style={{textAlign:"left"}}><pre>{val.fichier_desciption}</pre></td>
                                           <td>{lang[val.fichier_langue]}</td>
-                                          <td><a href ={ps} target="_blank" rel="noreferrer">Download Pdf</a></td>
-                                          {!cours ? (path ? (<td><a href ={cs} target="_blank" rel="noreferrer">Download Pdf</a></td>) :
+                                          <td><a href ={val.fichier_path} target="_blank" rel="noreferrer">Download Pdf</a></td>
+                                          {!cours ? (val.correction_path ? (<td><a href ={val.correction_path} target="_blank" rel="noreferrer">Download Pdf</a></td>) :
                                               <td> à venir </td>
                                           ) : <></>}
                                       </tr>

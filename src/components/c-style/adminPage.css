@@ -36,7 +36,6 @@ body {
 
 .Message {
     position: relative;
-    background: url("./pictures/studentbg.jpeg");
     background-size: cover;
     background-position: center;
     height: 420px;

@@ -98,9 +98,9 @@ const Navbar = ({id}) => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu variant="dark">
-                    <Dropdown.Item href="/Niveau" style={{textAlign:"center"}}>2BAC</Dropdown.Item>
-                    <Dropdown.Item href="/Niveau" style={{textAlign:"center"}}>1BAC</Dropdown.Item>
-                    <Dropdown.Item href="/Niveau" style={{textAlign:"center"}}>5EME</Dropdown.Item>
+                    <Dropdown.Item  style={{textAlign:"center"}}><NavLink className="dropdown-item" activeClassName="None"  to="/Niveau" >2BAC</NavLink></Dropdown.Item>
+                    <Dropdown.Item  style={{textAlign:"center"}}><NavLink className="dropdown-item" activeClassName="None"  to="/Niveau" >1BAC</NavLink></Dropdown.Item>
+                    <Dropdown.Item  style={{textAlign:"center"}}><NavLink className="dropdown-item" activeClassName="None"  to="/Niveau" >5EME</NavLink></Dropdown.Item>
                     <Dropdown.Divider />
                       <Dropdown.Item href="#/" style={{textAlign:"center"}}>QUESTION ?</Dropdown.Item>
                     </Dropdown.Menu>
