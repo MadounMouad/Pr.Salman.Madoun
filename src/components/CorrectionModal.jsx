@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import axios from 'axios'
+import app from '../util/firebase'
 
 import { useState } from 'react'
 
@@ -13,29 +14,50 @@ const CorrectionModal = () => {
     const [fichier_id,setFichier_id] = useState(null);
     const [filesList,setFilesList] = useState([]);
    
+  //****************************Changes*************************** */
+  const addFILEURL = async () => {
+    const storageRef = app.storage().ref()
+    const fileName = Date.now()+ selectedFile.name ;
+    const fileRef = storageRef.child(fileName);
+    await fileRef.put(selectedFile);
+    await fileRef.getDownloadURL().then((url) => {
+      updateElement(url,fileName);
+
+    });
+  };
+  
+  const deletefile = (id) => {
+    const storageRef = app.storage().ref().child(id);
+    storageRef.delete().then(() => {
+      console.log("file deleted")
+    });}
+  //***************************************************************/
+
     const refreshPage = ()=>{
       window.location.reload();
    }
 
-    const addElemetFile = async () => {
+    /* const addElemetFile = async () => {
         const data = new FormData() 
            data.append('file',selectedFile)
-           const res = await axios.post("https://madoun-salman.herokuapp.com/upload",data,{}) // then print response status
+           const res = await axios.post("http://localhost:4000/upload",data,{}) // then print response status
            console.log(res.data);
              
-         };
-    const updateElement = async () => {
-          let file = "";
+         }; */
+    const updateElement = async (url,cor_name) => {
+            let file_name = "";
            // get  path of the correction (if it exists) so we can delete it 
             for(let i=0;i<filesList.length;i++)
             {
-              console.log(filesList[i].fichier_id)
-              console.log(filesList[i].correction_path) 
               if (filesList[i].fichier_id === fichier_id) {
-                file = filesList[i].correction_path ;
+                file_name = filesList[i].co_name ;
+                if(file_name !== "" ) {
+                  deletefile(file_name);
+                }
+                
               }
             }
-            const res = await axios.post("https://madoun-salman.herokuapp.com/updatePath",{fichier_id:fichier_id,co_path:file},{}) // then print response status
+            const res = await axios.post("https://madoun-salman.herokuapp.com/updatePath",{fichier_id:fichier_id,co_path:url,co_name:cor_name},{}) // then print response status
             console.log(res.data);
             
              };
@@ -83,7 +105,7 @@ const CorrectionModal = () => {
           <Button variant="dark" onClick={handleClose}>
             Fermer
           </Button>
-          <Button variant="outline-dark" onClick={async () => { await addElemetFile(); await updateElement();handleClose();refreshPage();}}>
+          <Button variant="outline-dark" onClick={async () => {await addFILEURL();handleClose();refreshPage();}}>
             Sauvegarder
           </Button>
         </Modal.Footer>

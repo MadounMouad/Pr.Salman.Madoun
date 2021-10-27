@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import axios from 'axios'
 import { useState } from 'react'
+import app from '../util/firebase'
 
 
 const UpdateFile = ({file}) => {
@@ -30,41 +31,53 @@ const UpdateFile = ({file}) => {
      }
 
     //---------------------------------------
-    const updateElemetFile = async () => {
-        const data = new FormData() 
-           data.append('file',selectedFile)
-         
-           const resp = await axios.post("https://madoun-salman.herokuapp.com/upload",data,{})
-           console.log(resp.data);
-           
-         };
-    //---------------------------------------
-    const updateElement = async (id,path) => {
+   
+    //****************************Changes*************************** */
+ 
+  
+  const deletefile = (id) => {
+    const storageRef = app.storage().ref().child(id);
+    storageRef.delete().then(() => {
+      console.log("file deleted")
+    });}
+  //***************************************************************/
+    const updateElement = async (url,fileName) => {
+        let file_path = file.fichier_path;
+        let file_name =file.file_name;
+        
+        if(selectedFile){
+          deletefile(file.file_name);
+          const storageRef = app.storage().ref()
+          const fileName = Date.now()+ selectedFile.name ;
+          const fileRef = storageRef.child(fileName);
+          await fileRef.put(selectedFile);
+          await fileRef.getDownloadURL().then((url) => {
+                file_path = url;
+                file_name = fileName;
+    });
+        }
+      
+
         const Mydata = {
-            id : id ,
+            id : file.fichier_id ,
             type : type,
             nom : nom ,
             description : description,
             visi : visi,
             langue :langue,
             niveau: niveau,
-            path :path
+            path :file_path,
+            filename : file_name
         }
-        if (selectedFile){
-            console.log("file exists")
-            await updateElemetFile();
-            axios.post("https://madoun-salman.herokuapp.com/updateALL",Mydata).then((response) => {
+       
+          axios.post("https://madoun-salman.herokuapp.com/updateALL",Mydata).then((response) => {
           console.log(response.data);
         })
-        }
-        else {
-            console.log("file dosen't exists")
-            axios.post("https://madoun-salman.herokuapp.com/updateALLButFile",Mydata).then((response) => {
-          console.log(response.data);
-        })
-        }
+        
+
         
       };
+
 
     //-------------------------------------
     return (
@@ -143,7 +156,7 @@ const UpdateFile = ({file}) => {
             <Button variant="dark" onClick={handleClose}>
               Fermer
             </Button>
-            <Button variant="outline-dark" onClick={async ()=>{handleClose(); await updateElement(file.fichier_id,file.fichier_path);refreshPage()}}>
+            <Button variant="outline-dark" onClick={async ()=>{handleClose(); await updateElement();refreshPage()}}>
               Enregistrer
             </Button>
           </Modal.Footer>

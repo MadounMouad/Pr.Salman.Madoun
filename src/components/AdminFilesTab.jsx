@@ -9,25 +9,13 @@ import Row from 'react-bootstrap/Row'
 import Table from 'react-bootstrap/Table'
 import "./c-style/adminPage.css"
 import UpdateFile from './UpdateFile'
+import app from '../util/firebase'
+
 const AdminFilesTab = () => {
-  const getDocuments = () => {
-    axios.get("https://madoun-salman.herokuapp.com/files",{
-        params : {
-            type:type,
-            visi :visi,
-            langue:langue,
-            niveau :niveau
-        }
-    }).then((response) => {
-      console.log(response);
-      setFilesList(response.data);
-    })
-  }
     useEffect(() => {
         getDocuments();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
 
     const niv=["","2BAC SM","2BAC PC","2BAC SVT","1BAC SM","1BAC SE","5EME"];
     const typ=["","Cours","Série d'exercice","Devoir","Examen blanc","Examen national"];
@@ -40,11 +28,32 @@ const AdminFilesTab = () => {
     const [niveau, setNiveau] = useState('%');
     const [filesList,setFilesList] = useState([]);
     
+    const getDocuments = () => {
+        axios.get("https://madoun-salman.herokuapp.com/files",{
+            params : {
+                type:type,
+                visi :visi,
+                langue:langue,
+                niveau :niveau
+            }
+        }).then((response) => {
+          console.log(response);
+          setFilesList(response.data);
+        })
+      }
+      
+      //---------delete file from firebase-------
+    const deletefile = (id) => {
+      const storageRef = app.storage().ref().child(id);
+      storageRef.delete().then(() => {
+        console.log("file deleted")
+      });}
+    //---------------------------------
     
-    
-    
-      const DeleteElement = (fich_id,fich_path,fich_corr) => {
-        axios.post("https://madoun-salman.herokuapp.com/DeleteFile",{fich_id:fich_id,fich_path:fich_path,fich_corr:fich_corr},{}).then(res => { // then print response status
+      const DeleteElement = (fich_id,fich_name,co_name) => {
+        deletefile(fich_name);
+        if(co_name !== "" ) deletefile(co_name);
+        axios.post("https://madoun-salman.herokuapp.com/DeleteFile",{fich_id:fich_id},{}).then(res => { // then print response status
         console.log(res.data);
            });
          };
@@ -122,9 +131,7 @@ const AdminFilesTab = () => {
                   
                       filesList.map((val,key)=>{
                         
-                        let path = val.correction_path ;
-                        let ps = process.env.PUBLIC_URL + '/files/' + val.fichier_path ;
-                        let cs = process.env.PUBLIC_URL + '/files/' + path ;
+                
                         return(
                             <tr>
                             <td>{niv[val.fichier_niveau]}</td>
@@ -133,13 +140,13 @@ const AdminFilesTab = () => {
                             <td style={{textAlign:"left"}}><pre>{val.fichier_desciption}</pre></td>
                             <td>{lang[val.fichier_langue]}</td>
                             <td>{visib[val.fichier_visibilite]}</td>
-                            <td><a href ={ps} target="_blank"  rel="noreferrer">Download Pdf</a></td>
-                            {path ? <td><a href ={cs} target="_blank"  rel="noreferrer">Download Pdf</a></td> :
+                            <td><a href ={val.fichier_path} target="_blank"  rel="noreferrer">Download Pdf</a></td>
+                            {val.correction_path ? <td><a href ={val.correction_path} target="_blank"  rel="noreferrer">Download Pdf</a></td> :
                                 <td> à venir </td>}
                             <td>
                             <UpdateFile file={val}  />
                             &nbsp;
-                            <Button variant="outline-danger" onClick={() => {DeleteElement(val.fichier_id,val.fichier_path,val.correction_path);getDocuments()}} >Supprimer</Button>
+                            <Button variant="outline-danger" onClick={() => {DeleteElement(val.fichier_id,val.file_name,val.co_name);getDocuments()}} >Supprimer</Button>
                             </td>
                           </tr>
                         )

@@ -9,58 +9,89 @@ import { useState } from 'react'
 import "./c-style/adminPage.css"
 import AdminFilesTab from './AdminFilesTab'
 import Password from './Password'
+import app from '../util/firebase'
 
 const AdminPage = () => {
+    //****************** 
+    const [selectedFile,setFile] = useState(null);
+    const [Error,setError] = useState("");
+    
+
+
+    const addFILEURL = async () => {
+      const storageRef = app.storage().ref()
+      const fileName = Date.now()+ selectedFile.name ;
+      const fileRef = storageRef.child(fileName);
+      await fileRef.put(selectedFile);
+      await fileRef.getDownloadURL().then((url) => {
+        addElement(url,fileName);
+
+      });
+    };
+    //******************
+    
     //states of form's parameters
+    
     const [type, setType] = useState(0);
     const [nom, setNom] = useState("");
     const [description, setDescription] = useState("");
     const [visi, setVisi] = useState(0);
     const [langue, setLangue] = useState(0);
     const [niveau, setNiveau] = useState(0);
-    const [selectedFile,setFile] = useState(null);
+    
 
     //--------------------------------
    
     //Mange add element modal
     const [show, setShow] = useState(false);
     const handleClose = () => {setShow(false);}
-    const handleShow = () => setShow(true);
+    const handleShow = () => {setError("");setFile("");setShow(true);}
     //---------------------------------
+    
+    
 
     const refreshPage = ()=>{
       window.location.reload();
    }
 
    const addFile = async () => {
+     if (selectedFile){
     handleClose();
-    await addElemetFile();
-    await addElement();
-    refreshPage();
+    /* await addElemetFile(); */
+    await addFILEURL();
+    refreshPage();}
+    else {
+      setError("Vous devez choisir un document !!");
+    }
+    
+    
    }
 
     //send data in a request------------------------------------------------------------------
-    const addElemetFile = async () => {
+    /* const addElemetFile = async () => {
      const data = new FormData() 
         data.append('file',selectedFile)
       
-        const res = await axios.post("https://madoun-salman.herokuapp.com/upload",data,{});
+        const res = await axios.post("http://localhost:4000/upload",data,{});
         console.log(res.data);
-      };
+      }; */
       
-    const addElement =async () => {
+    const addElement =async (url,filename) => {
         axios.post("https://madoun-salman.herokuapp.com/create",{
           type : type,
           nom : nom ,
           description : description,
           visi : visi,
           langue :langue,
-          niveau: niveau
+          niveau: niveau, 
+          fileURL :url,
+          fileName: filename
         }).then((response) => {
           console.log(response.data);
         })
       };
     //---------------------------------------------------------------------------------------------
+
 
 
 
@@ -143,10 +174,9 @@ const AdminPage = () => {
         <Form.Group controlId="formFile" className="mb-3">
             <Form.Control type="file" onChange={(event) => {setFile(event.target.files[0]);}}/>
         </Form.Group>
-
-          
-          
-          
+        <Form.Text style={{color: "red"}} >
+            {Error}
+        </Form.Text> 
           
           
           

@@ -74,7 +74,7 @@ const Navbar = ({id}) => {
                <NavLink className="nav-link" activeClassName="None" to="/Niveau">Mes Documents</NavLink>
                </li>
               
-               <Button style={{marginLeft:"20px"}} variant="outline-danger"  onClick={logout2} >Se déconnecter</Button>
+               <Button variant="outline-danger"  onClick={logout2} >Se déconnecter</Button>
 
               </>
              )
@@ -92,7 +92,7 @@ const Navbar = ({id}) => {
                   <li><Button variant="outline-danger"> QUESTION ?</Button></li>
                 </ul>
               </li> */}
-                <Dropdown style={{marginLeft:"10px"}} >
+                <Dropdown style={{marginLeft:"10px",marginRight:"10px",textAlign:"center"}} >
                   <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">
                   NIVEAUX
                   </Dropdown.Toggle>
@@ -105,7 +105,7 @@ const Navbar = ({id}) => {
                       <Dropdown.Item href="#/" style={{textAlign:"center"}}>QUESTION ?</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                  <li className="nav-item" style={{textAlign:"center",marginLeft:"10px"}}>
+                  <li className="nav-item" style={{textAlign:"center"}}>
                   <LoginModel/>
                 </li>
                 </>
