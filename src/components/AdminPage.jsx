@@ -20,7 +20,7 @@ const AdminPage = () => {
 
     const addFILEURL = async () => {
       const storageRef = app.storage().ref()
-      const fileName = Date.now()+ selectedFile.name ;
+      const fileName = Date.now()+ selectedFile.name 
       const fileRef = storageRef.child(fileName);
       await fileRef.put(selectedFile);
       await fileRef.getDownloadURL().then((url) => {
